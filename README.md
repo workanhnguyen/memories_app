@@ -3,7 +3,9 @@ A - SETUP ENVIRONMENT
 1. Vào thư mục client, tạo react app: npx create-react-app ./
 2. Vào cd client, chạy các lệnh sau:
     + npm install @material-ui/core
+    + npm install @material-ui/icons
     + npm install react-redux
+    + npm install moment
 3. Vào thư mục server, tạo file index.js, sau đó chạy lệnh: npm init -y (để tạo package.json trống).
 4. Vào cd server Chạy các lệnh sau:
     + npm install body-parser
