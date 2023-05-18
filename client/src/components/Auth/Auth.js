@@ -51,6 +51,7 @@ const Auth = () => {
 
   const googleSuccess = async (res) => {
     const decoded = jwt_decode(res.credential);
+    localStorage.setItem('profileGoogle', JSON.stringify(res));
     try {
       dispatch({ type: 'AUTH', payload: decoded });
 

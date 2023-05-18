@@ -2,7 +2,16 @@ import axios from 'axios';
 
 const API = axios.create({ baseURL: 'http://localhost:5000' });
 
+API.interceptors.request.use((req) => {
+    if (localStorage.getItem('profile')) {
+        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token || JSON.parse(localStorage.getItem('profileGoogle')).credential}`;
+    }
+
+    return req;
+})
+
 export const fetchPosts = () => API.get('/posts');
+export const fetchPostsBySearch = (searchQuery) => API.get(`/posts/search?searchQuery=${searchQuery.searchTerm || 'none'}&tags=${searchQuery.tags}`);
 export const createPost = (newPost) => API.post('/posts', newPost);
 export const updatePost = (id, updatePost) => API.patch(`/posts/${id}`, updatePost);
 export const deletePost = (id) => API.delete(`/posts/${id}`);

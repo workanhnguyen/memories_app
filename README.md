@@ -4,6 +4,8 @@ A - SETUP ENVIRONMENT
 2. Vào cd client, chạy các lệnh sau:
     + npm install @material-ui/core
     + npm install @material-ui/icons
+    + npm install @material-ui/lab
+    + npm install chip-input
     + npm install react-redux
     + npm install moment
     + npm install react-router-dom

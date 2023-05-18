@@ -8,16 +8,16 @@ import { createPost, updatePost } from "../../actions/posts";
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
-    creator: '',
     title: '',
     message: '',
     tags: '',
     selectedFile: '' });
-
   const classes = useStyle();
+  const user = JSON.parse(localStorage.getItem('profile'));
   const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
   const dispatch = useDispatch();
 
+  // Edit post
   useEffect(() => {
     if (post) setPostData(post);
   }, [post]);
@@ -26,22 +26,32 @@ const Form = ({ currentId, setCurrentId }) => {
     e.preventDefault();
 
     if (currentId) {
-      dispatch(updatePost(currentId, postData));
+      dispatch(updatePost(currentId, { ...postData, name: user?.result?.name || user?.name }));
     } else {
-      dispatch(createPost(postData));
+      dispatch(createPost({ ...postData, name: user?.result?.name || user?.name }));
     }
     clear();
   };
+
   const clear = () => {
     setCurrentId(null);
     setPostData({
-      creator: '',
       title: '',
       message: '',
       tags: '',
       selectedFile: '' 
     });
   };
+
+  if (!user) {
+    return (
+      <Paper className={classes.paper}>
+        <Typography variant="h6" align="center">
+          Please Sign In to create your own memories and like other's memories.
+        </Typography>
+      </Paper>
+    );
+  }
 
   return (
     <Paper className={classes.paper}>
@@ -52,14 +62,6 @@ const Form = ({ currentId, setCurrentId }) => {
         onSubmit={handleSubmit}
       >
         <Typography variant="h6">{ currentId ? 'Editing' : 'Creating' } a Memory</Typography>
-        <TextField
-          name="creator"
-          variant="outlined"
-          label="Creator"
-          fullWidth
-          value={postData.creator}
-          onChange={(e) => setPostData({ ...postData, creator: e.target.value })}
-        />
         <TextField
           name="title"
           variant="outlined"
