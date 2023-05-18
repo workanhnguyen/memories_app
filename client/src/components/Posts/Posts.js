@@ -6,11 +6,13 @@ import Post from './Post/Post';
 import useStyle from './styles';
 
 const Posts = ({ setCurrentId }) => {
-  const user = JSON.parse(localStorage.getItem('profile'));
-  const posts = useSelector((state) => state.posts);
+  const { posts, isLoading } = useSelector((state) => state.posts);
   const classes = useStyle();
+
+  if (!posts.length && !isLoading) return 'No posts';
+
   return (
-    !posts.length ? <CircularProgress /> : (
+    isLoading ? <CircularProgress /> : (
       <Grid className={classes.container} container alignItems='stretch' spacing={3}>
         {posts.map((post) => (
           <Grid key={post._id} item xs={12} sm={12} md={6} lg={3}>

@@ -14,7 +14,7 @@ import ChipInput from 'material-ui-chip-input';
 
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
-import Paginate from "../Paginate";
+import Pagination from "../Paginate";
 import { getPosts, getPostsBySearch } from "../../actions/posts";
 import useStyle from "./styles";
 
@@ -35,9 +35,9 @@ const Home = () => {
   const classes = useStyle();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
+  // useEffect(() => {
+  //   dispatch(getPosts());
+  // }, [currentId, dispatch]);
 
   
   const handleAdd = (tag) => setTags([...tags, tag]);
@@ -99,9 +99,11 @@ const Home = () => {
               <Button onClick={searchPost} className={classes.searchButton} color="primary" variant="contained">Search</Button>
             </AppBar>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
-            <Paper elevation={6}>
-              <Paginate />
-            </Paper>
+            {(!searchQuery && !tags.length) && (
+              <Paper elevation={6} className={classes.pagination}>
+                <Pagination page={page} />
+              </Paper>
+            )}
           </Grid>
         </Grid>
       </Container>
