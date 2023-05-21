@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'https://concerned-hen-pumps.cyclic.app' });
+const API = axios.create({ baseURL: 'https://workanhnguyen-memoriesapp.cyclic.app' });
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {

@@ -30,7 +30,7 @@ B - MONGODB
 3. Tạo Project mới.
 4. Vào mục Database, chọn Build Database, chọn gói MO (free) và ấn Create.
 5. Tạo DB user, chọn Add current IP address và tạo.
-6. Chọn vào connect --> driver --> copy connection string.
+6. Chọn vào connect --> ...MongoDB with VS Code --> copy connection string.
 7. Vào server/index.js, tạo biến const CONNECTION_URL và dán connection string vào, thay đổi <username> và <password> thành DB user đã tạo trên mongodb.
 
 NOTES:
@@ -41,12 +41,19 @@ NOTES:
 DEPLOY:
 A - BACKEND: Dùng Cyclic
 1. Đăng nhập Cyclic.
-2. Chọn Link your own --> chọn path dẫn đến folder server.
+2. Chọn Link your own.
 3. Chỉnh lại script ở file package.json trong folder server thành:
     "scripts": {
         "start": "node index.js",
         "dev": "nodemon index.js"
     }
-4. Trở lại dashboard của Cyclic, chọn vào project vừa tạo ---> variables --> tạo ra key = MONGO_URL --> value = chuỗi kết nối mongodb trong code
-https://tender-nightgown-deer.cyclic.app
-B - FRONTEND: Dùng Hostinger
+4. Thêm code sau vào server/index.js:
+    app.use(cors({
+        credentials: true,
+        origin: "*",
+    }));
+5. Trở lại dashboard của Cyclic, chọn vào project vừa tạo ---> variables --> tạo ra key = CONNECTION_URL --> nhập value = chuỗi kết nối mongodb trong code.
+6. Thay đổi subdomain cho dễ nhớ.
+7. Đổi baseURL trong client/api/index.js thành API backend mới tạo.
+
+B - FRONTEND: Dùng Netify
