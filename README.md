@@ -42,9 +42,11 @@ DEPLOY:
 A - BACKEND: Dùng Cyclic
 1. Đăng nhập Cyclic.
 2. Chọn Link your own --> chọn path dẫn đến folder server.
-3. Chỉnh lại script trong foler server thành:
+3. Chỉnh lại script ở file package.json trong folder server thành:
     "scripts": {
         "start": "node index.js",
         "dev": "nodemon index.js"
     }
+4. Trở lại dashboard của Cyclic, chọn vào project vừa tạo ---> variables --> tạo ra key = MONGO_URL --> value = chuỗi kết nối mongodb trong code
+https://tender-nightgown-deer.cyclic.app
 B - FRONTEND: Dùng Hostinger
