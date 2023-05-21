@@ -37,3 +37,14 @@ NOTES:
 1. Khi import bất kì component nào ở phía server, đều phải ghi rõ phần đuôi mở rộng (.js)
 2. Một số mã code http, tìm hiểu ở link https://www.restapitutorial.com/httpstatuscodes.html
 3. Các biến lưu vào file .env thì cần phải chạy lệnh này để có thể dùng các biến đó: npm install dotenv. Sau đó import dotenv from 'dotenv'; và dùng lệnh dotenv.config(); Tuy nhiên file .env sẽ không được up lên github, do đó tạo ra file .env.example và gõ code như mẫu bên trong.
+
+DEPLOY:
+A - BACKEND: Dùng Cyclic
+1. Đăng nhập Cyclic.
+2. Chọn Link your own --> chọn path dẫn đến folder server.
+3. Chỉnh lại script trong foler server thành:
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js"
+    }
+B - FRONTEND: Dùng Hostinger
