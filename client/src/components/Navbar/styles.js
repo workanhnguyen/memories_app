@@ -50,6 +50,9 @@ export default makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '12px',
+    }
   },
   brandContainer: {
     display: 'flex',

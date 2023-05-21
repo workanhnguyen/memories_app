@@ -17,9 +17,6 @@ const Navbar = () => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('profile')));
-  }, [location]);
-
-  useEffect(() => {
     const token = user?.token;
 
     if (token) {
@@ -27,7 +24,7 @@ const Navbar = () => {
 
       if (decodedToken.exp * 1000 < new Date().getTime()) logout();
     }
-  }, [])
+  }, [location]);
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' });
